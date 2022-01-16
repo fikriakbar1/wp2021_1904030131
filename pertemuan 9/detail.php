@@ -79,7 +79,9 @@ $camaba = query("SELECT * FROM calon_mhs WHERE id=$id");
         <li class="list-group-item">jenis kelamin : <?= $camaba['jenis_kelamin']; ?></li>
         <li class="list-group-item">agama : <?= $camaba['agama']; ?></li>
         <li class="list-group-item">sekolah asal : <?= $camaba['sekolah_asal']; ?> </li>
-        <li class="list-group-item"><img src="image/<?= $camaba['foto_maba']; ?>" width="200px" alt=""></li>
+        <li class="list-group-item">
+          <td><img src="image/poto1png.jpg" width="100px"></td>
+        </li>
         <li class="list-group-item">
           <a href="edit.php?id=<?= $cmb['id']; ?>" class="btn btn-warning" role="button">Edit</a> |
           <a href="hapus.php?id=<?= $cmb['id']; ?>" class="btn btn-danger" role="button">Hapus</a> |
