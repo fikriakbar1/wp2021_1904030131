@@ -87,7 +87,7 @@ $camaba = query("SELECT * FROM calon_mhs WHERE id=$id");
         <li class="list-group-item">agama : <?= $camaba['agama']; ?></li>
         <li class="list-group-item">sekolah asal : <?= $camaba['sekolah_asal']; ?> </li>
         <li class="list-group-item">
-          <td><img src="image/poto1.png" width="100px"></td>
+          <td><img src="image/<poto1.png" width="100px"></td>
         </li>
         <li class="list-group-item">
           <a href="edit.php?id=<?= $camaba['id']; ?>" class="btn btn-warning" role="button">Edit</a> |

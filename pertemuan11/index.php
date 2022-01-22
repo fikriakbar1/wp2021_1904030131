@@ -114,7 +114,7 @@ if (isset($_POST['cari'])) {
             <tr>
               <th scope="row"><?php echo $no; ?></th>
               <td><?php echo $cmb['nama']; ?></td>
-              <td><img src="image/poto1.png" width="100px"></td>
+              <td><img src="image/<poto1.png" width="100px"></td>
               <td><a href="detail.php?id=<?= $cmb['id']; ?>" class="btn btn-warning" role="button">detail</a></td>
             </tr>
             <?php $no++ ?>
