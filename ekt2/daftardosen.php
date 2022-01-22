@@ -2,7 +2,7 @@
 //date_default_timezone_get("Asia/Jakarta");
 
 require 'functions.php';
-$camaba = query("SELECT * FROM calon_mhs");
+$camaba = query("SELECT * FROM dosen");
 
 if (isset($_POST['cari'])) {
   $camaba = cari($_POST['keyword']);
@@ -63,7 +63,7 @@ if (isset($_POST['cari'])) {
           <hr>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#"><i class="fas fa-chalkboard-teacher"></i> Daftar Dosen</a>
+          <a class="nav-link text-white" href="daftardosen.php"><i class="fas fa-chalkboard-teacher"></i> Daftar Dosen</a>
           <hr>
         </li>
         <li class="nav-item">
@@ -75,7 +75,7 @@ if (isset($_POST['cari'])) {
     <div class="col-md-10 p-5 pt-5">
       <!-- konten -->
 
-      <h3><i class="fas fa-users"></i> Daftar Calon Mahasiswa</h3>
+      <h3><i class="fas fa-users"></i> Dosen Fakultas Teknik</h3>
       <hr>
 
       <!-- Pencarian data -->
@@ -91,17 +91,18 @@ if (isset($_POST['cari'])) {
         <thead>
           <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama Lengkap</th>
-            <th scope="col">Foto</th>
-            <th scope="col">opsi</th>
+            <th scope="col">nidn</th>
+            <th scope="col">nama</th>
+            <th scope="col">email</th>
+            <th scope="col">aksi</th>
           </tr>
         </thead>
 
         <?php if (empty($camaba)) : ?>
           <tr>
-            <td colspan="4" class="alert alert-danger text-center" role="alert">
+            <td colspan="5" class="alert alert-danger text-center" role="alert">
               <p> <b>
-                  data mahasiswa tidak di temukan</p>
+                  data dosen tidak di temukan</p>
               </b>
             </td>
           </tr>
@@ -113,9 +114,10 @@ if (isset($_POST['cari'])) {
           <?php foreach ($camaba as $cmb) :  ?>
             <tr>
               <th scope="row"><?php echo $no; ?></th>
+              <td><?php echo $cmb['nidn']; ?></td>
               <td><?php echo $cmb['nama']; ?></td>
-              <td><img src="image/poto1.png" width="100px"></td>
-              <td><a href="detail.php?id=<?= $cmb['id']; ?>" class="btn btn-warning" role="button">aksi</a></td>
+              <td><?php echo $cmb['email']; ?></td>
+              <td><a href="detaildosen.php?id=<?= $cmb['id']; ?>" class="btn btn-warning" role="button">aksi</a></td>
             </tr>
             <?php $no++ ?>
           <?php endforeach ?>

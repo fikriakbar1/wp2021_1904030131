@@ -10,7 +10,7 @@ if (!isset($_GET['id'])) {
 }
 
 $id = $_GET['id'];
-$camaba = query("SELECT * FROM calon_mhs WHERE id=$id");
+$camaba = query("SELECT * FROM dosen WHERE id=$id");
 //var_dump($camaba [0] ['nama']);
 ?>
 
@@ -78,21 +78,24 @@ $camaba = query("SELECT * FROM calon_mhs WHERE id=$id");
     </div>
     <div class="col-md-10 p-5 pt-5">
       <!-- konten -->
-      <h3><i class="fas fa-users"></i> Detail data Calon Mahasiswa</h3>
+      <h3><i class="fas fa-users"></i> data dosen fakultas teknik</h3>
       <hr>
       <ul class="list-group">
-        <li class="list-group-item active "><?= $camaba['nama']; ?></li>
-        <li class="list-group-item">alamat :<?= $camaba['alamat']; ?></li>
-        <li class="list-group-item">jenis kelamin : <?= $camaba['jenis_kelamin']; ?></li>
-        <li class="list-group-item">agama : <?= $camaba['agama']; ?></li>
-        <li class="list-group-item">sekolah asal : <?= $camaba['sekolah_asal']; ?> </li>
         <li class="list-group-item">
-          <td><img src="image/<poto1.png" width="100px"></td>
+          <td><img src="image/poto1.png" width="100px"></td>
         </li>
+        <li class="list-group-item "><?= $camaba['nama']; ?></li>
+        <li class="list-group-item">nidn :<?= $camaba['nidn']; ?></li>
+        <li class="list-group-item">jenis_kelamin : <?= $camaba['jenis_kelamin']; ?></li>
+        <li class="list-group-item">alamat rumah: <?= $camaba['alamat_rumah']; ?></li>
+        <li class="list-group-item">agama : <?= $camaba['agama']; ?> </li>
+        <li class="list-group-item">pendidikan s1 : <?= $camaba['pendidikan s1']; ?> </li>
+        <li class="list-group-item">pendidikan s2 : <?= $camaba['pendidikan s2']; ?> </li>
+        <li class="list-group-item">pendidikan s3 : <?= $camaba['pendidikan s3']; ?> </li>
         <li class="list-group-item">
           <a href="edit.php?id=<?= $camaba['id']; ?>" class="btn btn-warning" role="button">Edit</a> |
           <a href="hapus.php?id=<?= $camaba['id']; ?>" onclick="return confirm('apakah anda akan menghapus data ini');" class="btn btn-danger" role="button">Hapus</a> |
-          <a href="index.php" class="btn btn-primary" role="button">Kembali</a>
+          <a href="daftardosen.php" class="btn btn-primary" role="button">Kembali</a>
         </li>
       </ul>
 

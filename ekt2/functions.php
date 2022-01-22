@@ -86,5 +86,22 @@ function cari($keyword)
     $rows[] = $row;
   }
 
+  global $conn;
+
+  $query = "SELECT * FROM dosen WHERE nama LIKE'%$keyword%'";
+  $result = mysqli_query($conn, $query);
+
+
+  while ($row = mysqli_fetch_assoc($result)) {
+    $rows[] = $row;
+  }
+
   return $rows;
+}
+
+function hapusdosen($d)
+{
+  global $conn;
+  mysqli_query($conn, "DELETE FROM dosen WHERE id=$d") or die(mysqli_error($conn));
+  return mysqli_affected_rows($conn);
 }

@@ -1,13 +1,17 @@
 <?php
-//date_default_timezone_get("Asia/Jakarta");
+date_default_timezone_get("Asia/Jakarta");
 
 require 'functions.php';
-$camaba = query("SELECT * FROM calon_mhs");
 
-if (isset($_POST['cari'])) {
-  $camaba = cari($_POST['keyword']);
+//agar tidak  bisa masuk  secara  pengetikan manual pada url
+if (!isset($_GET['id'])) {
+  header("location : index.php");
+  exit;
 }
 
+$id = $_GET['id'];
+$camaba = query("SELECT * FROM calon_mhs WHERE id=$id");
+//var_dump($camaba [0] ['nama']);
 ?>
 
 <!doctype html>
@@ -74,53 +78,24 @@ if (isset($_POST['cari'])) {
     </div>
     <div class="col-md-10 p-5 pt-5">
       <!-- konten -->
-
-      <h3><i class="fas fa-users"></i> Daftar Calon Mahasiswa</h3>
+      <h3><i class="fas fa-users"></i> Detail data Calon Mahasiswa</h3>
       <hr>
+      <ul class="list-group">
+        <li class="list-group-item active "><?= $camaba['nama']; ?></li>
+        <li class="list-group-item">alamat :<?= $camaba['alamat']; ?></li>
+        <li class="list-group-item">jenis kelamin : <?= $camaba['jenis_kelamin']; ?></li>
+        <li class="list-group-item">agama : <?= $camaba['agama']; ?></li>
+        <li class="list-group-item">sekolah asal : <?= $camaba['sekolah_asal']; ?> </li>
+        <li class="list-group-item">
+          <td><img src="image/poto1.png" width="100px"></td>
+        </li>
+        <li class="list-group-item">
+          <a href="edit.php?id=<?= $camaba['id']; ?>" class="btn btn-warning" role="button">Edit</a> |
+          <a href="hapus.php?id=<?= $camaba['id']; ?>" onclick="return confirm('apakah anda akan menghapus data ini');" class="btn btn-danger" role="button">Hapus</a> |
+          <a href="index.php" class="btn btn-primary" role="button">Kembali</a>
+        </li>
+      </ul>
 
-      <!-- Pencarian data -->
-      <form action="" method="POST">
-        <input type="text" id="keyword" size="50" name="keyword" placeholder="masukan keyword" autocomplete="off">
-        <button type="submit" class="btn btn-primary" name="cari">CARI</button>
-      </form>
-
-      <br>
-      <hr>
-
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">No</th>
-            <th scope="col">Nama Lengkap</th>
-            <th scope="col">Foto</th>
-            <th scope="col">opsi</th>
-          </tr>
-        </thead>
-
-        <?php if (empty($camaba)) : ?>
-          <tr>
-            <td colspan="4" class="alert alert-danger text-center" role="alert">
-              <p> <b>
-                  data mahasiswa tidak di temukan</p>
-              </b>
-            </td>
-          </tr>
-        <?php endif; ?>
-
-
-        <tbody>
-          <?php $no = 1; ?>
-          <?php foreach ($camaba as $cmb) :  ?>
-            <tr>
-              <th scope="row"><?php echo $no; ?></th>
-              <td><?php echo $cmb['nama']; ?></td>
-              <td><img src="image/<poto1.png" width="100px"></td>
-              <td><a href="detail.php?id=<?= $cmb['id']; ?>" class="btn btn-warning" role="button">detail</a></td>
-            </tr>
-            <?php $no++ ?>
-          <?php endforeach ?>
-        </tbody>
-      </table>
     </div>
   </div>
 

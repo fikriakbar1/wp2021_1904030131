@@ -1,13 +1,7 @@
 <?php
-//date_default_timezone_get("Asia/Jakarta");
+date_default_timezone_get("Asia/Jakarta");
 
-require 'functions.php';
-$camaba = query("SELECT * FROM calon_mhs");
-
-if (isset($_POST['cari'])) {
-  $camaba = cari($_POST['keyword']);
-}
-
+include 'koneksi.php';
 ?>
 
 <!doctype html>
@@ -55,11 +49,11 @@ if (isset($_POST['cari'])) {
           <hr class="bg-dark">
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="index.php"><i class="fas fa-users"></i> Calon Mahasiswa</a>
+          <a class="nav-link text-white" href="#"><i class="fas fa-users"></i> Calon Mahasiswa</a>
           <hr>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="tambah.php"><i class="fas fa-user-edit"></i> Input camaba</a>
+          <a class="nav-link text-white" href="#"><i class="fas fa-user-edit"></i> Input camaba</a>
           <hr>
         </li>
         <li class="nav-item">
@@ -74,51 +68,34 @@ if (isset($_POST['cari'])) {
     </div>
     <div class="col-md-10 p-5 pt-5">
       <!-- konten -->
-
       <h3><i class="fas fa-users"></i> Daftar Calon Mahasiswa</h3>
       <hr>
-
-      <!-- Pencarian data -->
-      <form action="" method="POST">
-        <input type="text" id="keyword" size="50" name="keyword" placeholder="masukan keyword" autocomplete="off">
-        <button type="submit" class="btn btn-primary" name="cari">CARI</button>
-      </form>
-
-      <br>
-      <hr>
-
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">No</th>
             <th scope="col">Nama Lengkap</th>
-            <th scope="col">Foto</th>
+            <th scope="col">Alamat</th>
+            <th scope="col">Jenis kelamin</th>
+            <th scope="col">Agama</th>
+            <th scope="col">Sekolah Asal</th>
+            <th scope="col">poto</th>
             <th scope="col">opsi</th>
           </tr>
         </thead>
-
-        <?php if (empty($camaba)) : ?>
-          <tr>
-            <td colspan="4" class="alert alert-danger text-center" role="alert">
-              <p> <b>
-                  data mahasiswa tidak di temukan</p>
-              </b>
-            </td>
-          </tr>
-        <?php endif; ?>
-
-
         <tbody>
-          <?php $no = 1; ?>
-          <?php foreach ($camaba as $cmb) :  ?>
+          <?php while ($camaba = mysqli_fetch_row($result)) { ?>
             <tr>
-              <th scope="row"><?php echo $no; ?></th>
-              <td><?php echo $cmb['nama']; ?></td>
-              <td><img src="image/poto1.png" width="100px"></td>
-              <td><a href="detail.php?id=<?= $cmb['id']; ?>" class="btn btn-warning" role="button">aksi</a></td>
+              <th scope="row"><?php echo $camaba[0]; ?></th>
+              <td><?php echo $camaba[1]; ?></td>
+              <td><?php echo $camaba[2]; ?></td>
+              <td><?php echo $camaba[3]; ?></td>
+              <td><?php echo $camaba[4]; ?></td>
+              <td><?php echo $camaba[5]; ?></td>
+              <<td><img src="image/poto1.png" width="100px"></td>
+                <td><i class="fas fa-edit"></i>|| <i class="fas fa-trash"></i></td>
             </tr>
-            <?php $no++ ?>
-          <?php endforeach ?>
+          <?php } ?>
         </tbody>
       </table>
     </div>
