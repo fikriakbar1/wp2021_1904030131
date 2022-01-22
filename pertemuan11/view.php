@@ -92,7 +92,7 @@ include 'koneksi.php';
               <td><?php echo $camaba[3]; ?></td>
               <td><?php echo $camaba[4]; ?></td>
               <td><?php echo $camaba[5]; ?></td>
-              <<td><img src="image/<poto1.png" width="100px"></td>
+              <<td><img src="image/poto1.png" width="100px"></td>
                 <td><i class="fas fa-edit"></i>|| <i class="fas fa-trash"></i></td>
             </tr>
           <?php } ?>
